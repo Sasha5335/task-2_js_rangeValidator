@@ -15,6 +15,9 @@ class RangeValidator {
 		if (typeof newFrom !== 'number' || newFrom < 0) {
 			throw new TypeError('Insert the number');
 		}
+		if (newFrom < 0) {
+			throw new RangeError();
+		}
 		this._from = newFrom;
 	}
 	get from() {
@@ -24,6 +27,9 @@ class RangeValidator {
 	set to(newTo) {
 		if (typeof newTo !== 'number' || this._from > newTo) {
 			throw new TypeError('Insert the number');
+		}
+		if (this._from > newTo) {
+			throw new RangeError();
 		}
 		this._to = newTo;
 	}
