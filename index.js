@@ -7,13 +7,16 @@ class RangeValidator {
 	 */
 
 	constructor(from, to) {
+		if (from >= to) {
+			throw new RangeError('Number greater than maximum');
+		}
 		this._from = from;
 		this._to = to;
 	}
 
 	set from(newFrom) {
-		if (newFrom >= this.to || newFrom < 0) {
-			throw new RangeError('Number greater than maximum or less than allowed');
+		if (newFrom == 'number') {
+			throw new TypeError('Insert the number');
 		}
 		this._from = newFrom;
 	}
@@ -22,21 +25,20 @@ class RangeValidator {
 	}
 
 	set to(newTo) {
+		if (newFrom == 'number') {
+			throw new TypeError('Insert the number');
+		}
 		this._to = newTo;
 	}
 	get to() {
 		return this._to;
 	}
 
-	getterRange() {
-
-	}
-
-	validate(num) {
+	getValidate(num) {
 		if (num >= this.from && num <= this.to) {
-			return true;
+			return num;
 		}
-		return false;
+		throw new TypeError('Number is out of range');
 	}
 }
 
